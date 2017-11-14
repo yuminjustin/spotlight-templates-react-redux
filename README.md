@@ -1,2 +1,4 @@
 # spotlight-templates-react_all
-spotlight templates react+redux+router+and环境
+spotlight scaffold template for  react+redux+router+and
+<br/>
+It‘s comming
