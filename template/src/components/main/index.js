@@ -39,7 +39,7 @@ export default class Headers extends Component {
   render() {
 
     return (
-      <Content className="_content" style={{ height: this.state.height }}>
+      <Content className="_content" style=\{{ height: this.state.height }}>
         <Switch>
           <Route exact path="/" component={Hello} />
           <Route exact path="/test" component={Test} />
