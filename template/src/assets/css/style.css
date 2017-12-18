@@ -1,0 +1,18 @@
+h2._app_name,
+._user {
+    color: #fff;
+}
+
+._left_bar,
+._left_bar .ant-menu {
+    background: #dedede;
+}
+
+._main_body {
+    background: #fff;
+    padding: 12px 12px 0 12px;
+}
+
+._error_404 {
+    text-align: center;
+}
