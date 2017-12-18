@@ -55,7 +55,7 @@ class Bar extends Component {
     let lists = this.splitData(this.props.common.menu)
 
     return (
-     <div className="_left_bar" style={{height:this.state.height }}>
+     <div className="_left_bar" style=\{{height:this.state.height }}>
       <Menu mode="inline" openKeys={this.state.openKeys} onOpenChange={this.onOpenChange} >
         {lists}
       </Menu>
