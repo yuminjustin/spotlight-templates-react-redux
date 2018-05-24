@@ -9,6 +9,8 @@ module.exports = {
     static: path.resolve(__dirname, '../static'), //资源目录
     newStatic: 'static',
     outputPath: '../../dist', // 输出目录
+    gulpPath: 'dist', // gulp 同 输出目录
+    html5Router: true, // html5 router  gulp使用
     htmlOption: { // 对应 entry
       app: {
         title: 'Spotlight scaffold react'
