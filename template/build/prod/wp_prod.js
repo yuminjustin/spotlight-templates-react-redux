@@ -46,7 +46,6 @@ var _build = config.build,
         ]),
         optimization: { /* 参考 webpack 官方示例配置 特殊要求自行配置*/
             /* https://github.com/webpack/webpack/tree/master/examples */
-            minimize: false,
             occurrenceOrder: true,
             runtimeChunk: {
                 name: "manifest"
