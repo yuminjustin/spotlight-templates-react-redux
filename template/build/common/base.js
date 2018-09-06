@@ -1,36 +1,36 @@
 /* webpack基础配置 */
 var path = require('path')
-var utils = require("./common/utils")
-var config = require("./config")
+var config = require("../config")
+
+var codeBase = path.join(__dirname, '../../src'),
+    _dir = process.env.NODE_ENV === 'production' ? './static' : 'static'
+
 
 module.exports = {
     entry: config.entry,
-    output: {
-        filename: 'bundle.js',
-        chunkFilename: '[name].bundle.js',
-        path: path.resolve(__dirname, '../../dist')
-    },
     resolve: {
         extensions: ['.js', '.json', '.jsx'],
         alias: {
-            '@': utils.resolve('../src'),
-            'C': utils.resolve('../src/components'),
-            'Connect': utils.resolve('../src/store/index.js')
+            'B': codeBase,
+            'C': path.join(__dirname, '../../src/components'), // 组件别名 方便使用
+            'Connect': path.join(__dirname, '../../src/store/index.js')  // redux connect 使用
         }
     },
     module: {
-        rules: [
-            {
+        rules: [{
                 test: /\.(js|jsx)$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader'
+                loader: 'babel-loader',
+                options:{
+                    cacheDirectory: true
+                },
+                include: [codeBase]
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: utils.assetsPath('image/[name].[hash:7].[ext]')
+                    name: path.posix.join(_dir, 'image/[name].[hash:5].[ext]') //image 文件夹
                 }
             },
             {
@@ -38,7 +38,7 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: utils.assetsPath('media/[name].[hash:7].[ext]')
+                    name: path.posix.join(_dir, 'media/[name].[hash:5].[ext]') //media 文件夹
                 }
             },
             {
@@ -46,7 +46,7 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
+                    name: path.posix.join(_dir, 'fonts/[name].[hash:5].[ext]') //fonts 文件夹
                 }
             }
         ]

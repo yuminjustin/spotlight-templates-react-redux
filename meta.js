@@ -9,7 +9,7 @@ module.exports = {
       "type": "string",
       "required": false,
       "message": "项目描述/ description",
-      "default": "A react_all project"
+      "default": "A react+redux project"
     },
     "author": {
       "type": "string",

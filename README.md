@@ -2,10 +2,6 @@
 spotlight scaffold template for react<br>
 
 ## Use：
-     
-     spotlight init react_all my-project
-
-     cd my-project
 
      npm install
 
@@ -34,5 +30,6 @@ This template is base on webpack, support for reactjs<br>
         try_files $uri $uri/ /index.html;
     }
 
+4.Upgrade to webpack4<br>
 
 enjoy!
