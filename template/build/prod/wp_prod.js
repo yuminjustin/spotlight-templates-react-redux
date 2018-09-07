@@ -3,41 +3,33 @@ var path = require('path')
 var webpack = require('webpack')
 var merge = require('webpack-merge')
 var CopyWebpackPlugin = require('copy-webpack-plugin')
-var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+var MiniCssExtractPlugin = require("mini-css-extract-plugin");
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 var utils = require('../common/utils')
 var webpackBase = require("../common/base")
 var config = require('../config')
 
 var _build = config.build,
-    _dir = './static',
     HWP_arr = utils.HtmlWPMaker(_build),
     webpackConfig = {
         mode: 'production',
         module: {
-            rules: utils.styleLoaders({
-                sourceMap: true,
-                extract: true
-            })
+            rules: utils.styleLoaders()
         },
-        output: {
-            filename: path.posix.join(_dir, 'js/[name].[chunkhash].js'),
-            chunkFilename: path.posix.join(_dir, 'js/[name].[chunkhash].js'),
+        output: Object.assign(utils.filenames('js'),{
             path: path.resolve(__dirname, _build.outputPath)
-        },
+        }),
         devtool: '#source-map',
         plugins: HWP_arr.concat([
             new webpack.DefinePlugin({
                 'process.env': _build.env
             }),
-            new ExtractTextPlugin({
-                filename: path.posix.join(_dir, 'css/[name].[chunkhash].css')
-            }),
             new CleanWebpackPlugin(_build.outputPathName, {
                 root: path.resolve(__dirname, '../../')
             }),
-            new OptimizeCSSPlugin({}),
+            new MiniCssExtractPlugin(utils.filenames('css')),
             new CopyWebpackPlugin([{
                 from: _build.static,
                 to: _build.newStatic,
@@ -52,6 +44,12 @@ var _build = config.build,
             },
             splitChunks: {
                 cacheGroups: {
+                    styles: {
+                        name: 'styles',
+                        test: /\.css$/,
+                        chunks: 'all',
+                        enforce: true
+                    },
                     vendor: {
                         test: /node_modules/,
                         chunks: "all",
@@ -66,7 +64,15 @@ var _build = config.build,
                         minSize: 0
                     }
                 }
-            }
+            },
+            minimizer: [
+                new UglifyJsPlugin({
+                    cache: true,
+                    parallel: true,
+                    sourceMap: true
+                }),
+                new OptimizeCSSPlugin({})
+            ]
         }
     }
 
