@@ -8,8 +8,7 @@
     "build": "node build/prod/index.js"
   },
   "author": "{{author}}",
-  "license": "MIT",
-  "devDependencies": {
+    "devDependencies": {
     "@babel/core": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
