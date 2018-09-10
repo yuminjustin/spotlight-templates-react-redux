@@ -3,6 +3,10 @@ spotlight scaffold template for react<br>
 
 ## Use：
 
+    spotlight init react_all my-project
+
+    cd my-project
+
      npm install
 
      npm run dev
