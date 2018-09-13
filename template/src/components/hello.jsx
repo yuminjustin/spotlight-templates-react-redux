@@ -6,7 +6,7 @@ import { Button } from 'antd';
       return (
         <div className="App">
           <p>Hi there~~</p>
-          <img src="static/image/wihte.png"/>
+          <img src="static/image/white.png"/>
         </div>
       );
     }
