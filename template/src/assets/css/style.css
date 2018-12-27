@@ -1,6 +1,15 @@
-h2._app_name,
+@value color: './color.css';
+@value white from color;
+._app_name,
 ._user {
-    color: #fff;
+    color: white;
+}
+
+._app_name {
+    composes: l from './reset.css';
+}
+._user {
+    composes: r from './reset.css';
 }
 
 ._left_bar,
@@ -9,7 +18,7 @@ h2._app_name,
 }
 
 ._main_body {
-    background: #fff;
+    background: white;
     padding: 12px 12px 0 12px;
 }
 
