@@ -3,9 +3,6 @@ import '@babel/polyfill'
 
 /* css */
 import 'antd/dist/antd.css';
-import 'B/assets/css/reset.css';
-import 'B/assets/css/style.css';
-
 import React from 'react';
 import { render } from 'react-dom';
 
