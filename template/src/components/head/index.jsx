@@ -20,8 +20,8 @@ class Headers extends Component {
     let state = this.context.store.getState();  // get state type 1
 
     return (<Header>
-      <h2 className={style._app_name+" l"}>Spotlight for React</h2>
-      <div className={style._user+" r"}>
+      <h2 className={style._app_name}>Spotlight for React</h2>
+      <div className={style._user}>
         {state.common.userInfo.name}
       </div>
     </Header>
