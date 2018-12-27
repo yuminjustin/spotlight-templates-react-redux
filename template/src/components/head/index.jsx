@@ -4,6 +4,8 @@ import { Layout } from 'antd';
 import Connect from 'Connect';
 const { Header } = Layout;
 
+import style from 'B/assets/css/style.css';
+
 class Headers extends Component {
   static contextTypes = {
     store: PropTypes.object
@@ -18,8 +20,8 @@ class Headers extends Component {
     let state = this.context.store.getState();  // get state type 1
 
     return (<Header>
-      <h2 className="_app_name l">Spotlight for React</h2>
-      <div className="_user r">
+      <h2 className={style._app_name+" l"}>Spotlight for React</h2>
+      <div className={style._user+" r"}>
         {state.common.userInfo.name}
       </div>
     </Header>
