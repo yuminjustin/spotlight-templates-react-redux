@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-dom'
 import { Menu, Icon } from 'antd';
 import Connect from 'Connect';
-
+import style from 'B/assets/css/style.css';
 const SubMenu = Menu.SubMenu;
 
 class Bar extends Component {
@@ -55,7 +55,7 @@ class Bar extends Component {
     let lists = this.splitData(this.props.common.menu)
 
     return (
-     <div className="_left_bar" style=\{{height:this.state.height }}>
+     <div className={style._left_bar} style={{height:this.state.height }}>
       <Menu mode="inline" openKeys={this.state.openKeys} onOpenChange={this.onOpenChange} >
         {lists}
       </Menu>
