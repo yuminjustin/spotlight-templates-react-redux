@@ -1,0 +1,6 @@
+/* postcss example */
+@value white: #fff;
+
+.center {
+    text-align: center;
+}
