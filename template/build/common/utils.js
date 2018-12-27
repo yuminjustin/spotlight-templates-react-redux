@@ -63,7 +63,7 @@ exports.styleLoaders = function (isdev) {
         test: /\.css$/,
         use: [
             isdev ? 'style-loader' : MiniCssExtractPlugin.loader,
-            'css-loader',
+           'css-loader?modules&localIdentName=[local]_[hash:base64:5]',
             'postcss-loader'
         ]
     }]
