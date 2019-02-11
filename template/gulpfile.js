@@ -5,10 +5,10 @@ var config = require('./build/config');
 
 var root = config.build.outputPathName;
 
-gulp.task('replace', function () {
+gulp.task('default', function (done) {
 
     // 服务端支持rewrite
-    //apache 
+    //apache
     gulp.src('./gulp/.htaccess')
         .pipe(copy())
         .pipe(gulp.dest(root));
@@ -28,7 +28,7 @@ gulp.task('replace', function () {
     gulp.src(root + '/static/js/manifest.*.js')
         .pipe(replace('+"static/js/"+', '+"/static/js/"+'))
         .pipe(gulp.dest(root + '/static/js/'));
+
+    done();
+    console.log('打包成功.')
 })
-
-
-gulp.task('default', ['replace'])
