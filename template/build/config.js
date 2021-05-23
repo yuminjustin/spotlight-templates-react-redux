@@ -1,5 +1,5 @@
 /* 自定义配置 */
-var path = require('path'),
+let path = require('path'),
     outputPathName = 'dist', // 输出目录名称
     outputPath = '../../' + outputPathName;
 
@@ -7,6 +7,7 @@ module.exports = {
     entry: { // 入口 (多)
         app: ['./src/main.js']
     },
+    cssModule: true, // css module
     build: { // 生产环境
         env: '"production"',
         static: path.resolve(__dirname, '../static'), //资源目录
@@ -15,7 +16,7 @@ module.exports = {
         outputPathName: outputPathName, // gulp & prod
         htmlOption: { // 对应 entry
             app: {
-                title: 'react webpack',
+                title: 'react redux webpack',
                 template: 'index.html', // 源模板文件
                 filename: 'index.html' // 输出文件
             }
@@ -29,11 +30,12 @@ module.exports = {
         publicPath: "/",
         static: 'static',
         outputPath: path.resolve(__dirname, outputPath), // 临时
+        host: 'localhost',
         port: '3001',
-        html5Router: true, // html5 router 
+        html5Router: false, // html5 router 
         htmlOption: { // 对应 entry
             app: {
-                title: 'react webpack',
+                title: 'react redux webpack',
                 template: 'index.html', // 源模板文件
                 filename: 'index.html' // 输出文件
             }

@@ -1,5 +1,5 @@
 import React , {Component} from 'react'
-import {BrowserRouter as Router } from 'react-router-dom'
+import { HashRouter } from "react-router-dom";
 
 import Headers from './head'
 import Bar from './bar'
@@ -12,7 +12,7 @@ const { Sider } = Layout;
 class App extends Component {
   render() {
 	return (
-    <Router>
+    <HashRouter>
       <Layout>
         <Headers />
         <Layout>
@@ -24,7 +24,7 @@ class App extends Component {
           </Layout>
         </Layout>
       </Layout>
-    </Router>
+    </HashRouter>
   )
  }
 }

@@ -34,6 +34,6 @@ This template is base on webpack, support for reactjs<br>
         try_files $uri $uri/ /index.html;
     }
 
-4.Upgrade to webpack4<br>
+4.Upgrade to webpack5<br>
 
 enjoy!

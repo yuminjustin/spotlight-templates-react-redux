@@ -1,66 +1,58 @@
 import React, { Component } from 'react';
-import { Form, Icon, Input, Button } from 'antd';
-const FormItem = Form.Item;
+import { Form, Input, Button, Checkbox } from 'antd';
 
-function hasErrors(fieldsError) {
-  return Object.keys(fieldsError).some(field => fieldsError[field]);
-}
+const layout = {
+  labelCol: { span: 8 },
+  wrapperCol: { span: 16 },
+};
+const tailLayout = {
+  wrapperCol: { offset: 8, span: 16 },
+};
 
-class HorizontalLoginForm extends Component {
+export default class LoginForm extends Component {
   componentDidMount() {
-    // To disabled submit button at the beginning.
-    this.props.form.validateFields();
   }
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
-      }
-    });
+  onFinish = (e) => {
+    console.log('Success:', e);
+  }
+  onFinishFailed = (e) => {
+    console.log('Failed:', e.errorInfo);
   }
   render() {
-    const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = this.props.form;
-
-    // Only show error after a field is touched.
-    const userNameError = isFieldTouched('userName') && getFieldError('userName');
-    const passwordError = isFieldTouched('password') && getFieldError('password');
     return (
-      <Form layout="inline" onSubmit={this.handleSubmit}>
-        <FormItem
-          validateStatus={userNameError ? 'error' : ''}
-          help={userNameError || ''}
+      <Form
+        {...layout}
+        name="basic"
+        initialValues=\{{ remember: true }}
+        onFinish={this.onFinish}
+        onFinishFailed={this.onFinishFailed}
+      >
+        <Form.Item
+          label="Username"
+          name="username"
+          rules={[{ required: true, message: 'Please input your username!' }]}
         >
-          {getFieldDecorator('userName', {
-            rules: [{ required: true, message: 'Please input your username!' }],
-          })(
-            <Input prefix={<Icon type="user" style=\{{ fontSize: 13 }} />} placeholder="Username" />
-          )}
-        </FormItem>
-        <FormItem
-          validateStatus={passwordError ? 'error' : ''}
-          help={passwordError || ''}
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[{ required: true, message: 'Please input your password!' }]}
         >
-          {getFieldDecorator('password', {
-            rules: [{ required: true, message: 'Please input your Password!' }],
-          })(
-            <Input prefix={<Icon type="lock" style=\{{ fontSize: 13 }} />} type="password" placeholder="Password" />
-          )}
-        </FormItem>
-        <FormItem>
-          <Button
-            type="primary"
-            htmlType="submit"
-            disabled={hasErrors(getFieldsError())}
-          >
-            Log in
-          </Button>
-        </FormItem>
+          <Input.Password />
+        </Form.Item>
+
+        <Form.Item {...tailLayout} name="remember" valuePropName="checked">
+          <Checkbox>Remember me</Checkbox>
+        </Form.Item>
+
+        <Form.Item {...tailLayout}>
+          <Button type="primary" htmlType="submit">
+            Submit
+        </Button>
+        </Form.Item>
       </Form>
     );
   }
 }
-
-const WrappedHorizontalLoginForm = Form.create()(HorizontalLoginForm);
-
-export default WrappedHorizontalLoginForm;

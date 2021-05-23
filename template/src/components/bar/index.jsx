@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom'
-import { Menu, Icon } from 'antd';
+import { Link } from 'react-router-dom'
+import { Menu } from 'antd';
+import {
+  TeamOutlined,
+  ShopOutlined
+} from '@ant-design/icons';
 import Connect from 'Connect';
 import style from 'B/assets/css/style.css';
 const SubMenu = Menu.SubMenu;
 
 class Bar extends Component {
   // submenu keys of first level
-  rootSubmenuKeys = this.props.common.menu.map((item)=>{
-     return item.key
+  rootSubmenuKeys = this.props.common.menu.map((item) => {
+    return item.key
   });
 
   state = {
-    height:window.innerHeight-64,
+    height: window.innerHeight - 64,
     openKeys: ['1'],
   };
 
@@ -26,25 +30,32 @@ class Bar extends Component {
       });
     }
   }
-  
+
   splitData = (arr) => {
-     return arr.map((item)=>{
-        if(item.children){
-           let temp = this.splitData(item.children),
-               title = item.name;
-           if(item.icon) title = (<span><Icon type={item.icon} /><span>{item.name}</span></span>)
-           return (
-            <SubMenu key={item.key} title={title}>
-             {temp}
-            </SubMenu>
-           )
-        }
-        else {
-          return (
-            <Menu.Item key={item.key}><Link to={item.url}>{item.name}</Link></Menu.Item>
+    return arr.map((item) => {
+      if (item.children) {
+        let temp = this.splitData(item.children),
+          title = item.name;
+        if (item.icon) {
+          title = (
+            <span>
+              {item.icon == 'team' ? <TeamOutlined /> : <ShopOutlined />}
+              <span>{item.name}</span>
+            </span>
           )
         }
-     })
+        return (
+          <SubMenu key={item.key} title={title}>
+            {temp}
+          </SubMenu>
+        )
+      }
+      else {
+        return (
+          <Menu.Item key={item.key}><Link to={item.url}>{item.name}</Link></Menu.Item>
+        )
+      }
+    })
   }
 
   componentDidMount() {
@@ -55,11 +66,11 @@ class Bar extends Component {
     let lists = this.splitData(this.props.common.menu)
 
     return (
-     <div className={style._left_bar} style=\{{height:this.state.height }}>
-      <Menu mode="inline" openKeys={this.state.openKeys} onOpenChange={this.onOpenChange} >
-        {lists}
-      </Menu>
-    </div>
+      <div className={style._left_bar} style=\{{ height: this.state.height }}>
+        <Menu mode="inline" openKeys={this.state.openKeys} onOpenChange={this.onOpenChange} >
+          {lists}
+        </Menu>
+      </div>
     );
   }
 }

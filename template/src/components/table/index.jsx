@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Icon } from 'antd';
+import { Table } from 'antd';
 import Connect from 'Connect';
 
 
